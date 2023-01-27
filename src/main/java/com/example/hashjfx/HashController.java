@@ -44,5 +44,6 @@ public class HashController {
 
         fileChooser.getExtensionFilters().add(fileExt);
         file = fileChooser.showOpenDialog(stage);
+
     }
 }
