@@ -18,6 +18,7 @@ import java.io.IOException;
 public class HashController {
     @FXML
     private Label translateHash;
+
     @FXML
     private TextField inputHash;
     @FXML
