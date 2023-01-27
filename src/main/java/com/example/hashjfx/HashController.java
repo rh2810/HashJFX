@@ -13,7 +13,10 @@ import javafx.stage.Stage;
 import javafx.stage.Window;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Scanner;
 
 public class HashController {
     @FXML
@@ -22,16 +25,27 @@ public class HashController {
     private TextField inputHash;
     @FXML
     private FileChooser fileChooser;
-
-    private File file;
+    HashMap<String, String> dictionary;
 
     @FXML
     protected void onSubmitButtonClick() {
         try {
-//            translateHash.setText(HashModel.convertToString(inputHash.getText(), file));
-            translateHash.setText(file.getAbsolutePath());
+            if(dictionary == null || dictionary.isEmpty()) {
+                throw new FileNotFoundException("You must upload a valid text file.");
+            }
+
+            translateHash.setText(HashModel.convertToString(inputHash.getText(), dictionary));
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            //TODO: POP UP BOX FOR EACH INSTANCE
+            switch (e.getClass().getCanonicalName()){
+                case "java.lang.NullPointerException":
+                    System.out.println("The input field cannot be empty.");
+                    break;
+                case "java.io.FileNotFoundException":
+                    System.out.println(e.getMessage());
+                    break;
+            }
+            System.out.println(e.getClass().getCanonicalName());
         }
     }
 
@@ -41,9 +55,18 @@ public class HashController {
         Window stage = source.getScene().getWindow();
         fileChooser = new FileChooser();
         FileChooser.ExtensionFilter fileExt = new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
+        File file;
+
 
         fileChooser.getExtensionFilters().add(fileExt);
         file = fileChooser.showOpenDialog(stage);
 
+        try {
+            dictionary = HashModel.generateMD5Map(file);
+        } catch (Exception e) {
+            dictionary = null;
+            //TODO: POP UP BOX
+            System.out.println("An unexpected error occurred: " + e.getClass().getCanonicalName());
+        }
     }
 }
