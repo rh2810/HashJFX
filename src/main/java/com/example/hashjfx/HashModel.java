@@ -4,20 +4,19 @@ package com.example.hashjfx;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.InputStreamReader;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.util.HashMap;
+import java.util.Scanner;
 
 public class HashModel {
-    public static String convertToString(String md5, File file) throws Exception{
+    public static String convertToString(String md5, HashMap<String, String> dict) throws Exception {
         String string = null;
 
-        // TODO: Make parameter that passes the absolute location to the file
-//        File fd = new File();
-
-        if(md5 == null) {
-            return null;
+        if (md5 == null || md5.equals("")) {
+            throw new NullPointerException("Input is empty.");
         }
 
         if (OSChecker.isWindows()) {
@@ -41,5 +40,28 @@ public class HashModel {
         System.out.println(md5);
 
         return md5;
+    }
+
+    public static HashMap<String, String> generateMD5Map(File file) throws Exception {
+        Scanner fd;
+
+        try {
+            if (file != null && !file.getName().endsWith(".txt")) {
+                throw new FileNotFoundException();
+            }
+
+            fd = new Scanner(file);
+
+            while (fd.hasNextLine()) {
+                String data = fd.nextLine();
+                System.out.println(data);
+            }
+            fd.close();
+        } catch (NullPointerException | FileNotFoundException e) {
+            System.out.println("No file given.");
+            return null;
+        }
+
+        return null;
     }
 }
