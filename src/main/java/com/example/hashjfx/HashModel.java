@@ -12,12 +12,6 @@ import java.util.HashMap;
 public class HashModel {
     public static String convertToString(String md5, File file) throws Exception{
         String string = null;
-        HashMap<String, String> fileText = new HashMap<>();
-        fileText.put("98f6bcd4621d373cade4e832627b4f6", "test");
-        fileText.put("ed076287532e86365e841e92bfc50d8c", "Hello World!");
-        fileText.put("4cf0f33516b8276d758a9a7274737417", "98f6bcd4621d373cade4e832627b4f6");
-        fileText.put("25f9e794323b453885f5181f1b624d0b", "123456789");
-        fileText.put("60042da2d0cb50f853b4b81a08ac331a", "A very very very very very very lng string");
 
         // TODO: Make parameter that passes the absolute location to the file
 //        File fd = new File();
