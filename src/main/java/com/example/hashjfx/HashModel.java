@@ -13,37 +13,34 @@ import java.util.Scanner;
 
 public class HashModel {
     public static String convertToString(String md5, HashMap<String, String> dict) throws Exception {
-        String string = null;
+        String decodedHash;
 
         if (md5 == null || md5.equals("")) {
-            throw new NullPointerException("Input is empty.");
+            throw new NullPointerException("Input cannot be empty.");
         }
 
-        if (OSChecker.isWindows()) {
-            System.out.println("Is Windows!");
-//            string = md5;
+        decodedHash = dict.get(md5);
 
-        } else if (OSChecker.isLinux()) {
-            System.out.println("Is Linux!");
-            // well. do the same thing but with grep LOL
+//        if (OSChecker.isWindows()) {
+//            System.out.println("Is Windows!");
+////            string = md5;
+//
+//        } else if (OSChecker.isLinux()) {
+//            System.out.println("Is Linux!");
+//            // well. do the same thing but with grep LOL
+//
+//        } else {
+//            throw new UnsupportedOperationException("This program is not compatible with the current operating system.");
+//        }
 
-        } else {
-            throw new UnsupportedOperationException("This program is not compatible with the current operating system.");
-        }
-
-        MessageDigest digest = MessageDigest.getInstance("MD5");
-        // Update input string in message digest
-        digest.update(md5.getBytes(), 0, md5.length());
-        // Converts message digest value in base 16 (hex)
-        md5 = new BigInteger(1, digest.digest()).toString(16);
-
-        System.out.println(md5);
-
-        return md5;
+        return decodedHash;
     }
 
     public static HashMap<String, String> generateMD5Map(File file) throws Exception {
         Scanner fd;
+        HashMap<String, String> dictionary = new HashMap<>();
+        String data;
+        String md5Hash;
 
         try {
             if (file != null && !file.getName().endsWith(".txt")) {
@@ -53,15 +50,24 @@ public class HashModel {
             fd = new Scanner(file);
 
             while (fd.hasNextLine()) {
-                String data = fd.nextLine();
-                System.out.println(data);
+                data = fd.nextLine();
+
+                MessageDigest digest = MessageDigest.getInstance("MD5");
+                // Update input string in message digest
+                digest.update(data.getBytes(), 0, data.length());
+                // Converts message digest value in base 16 (hex)
+                md5Hash = new BigInteger(1, digest.digest()).toString(16);
+
+                dictionary.put(md5Hash, data);
+
+                System.out.println(data + ": " + md5Hash);
             }
+
             fd.close();
         } catch (NullPointerException | FileNotFoundException e) {
-            System.out.println("No file given.");
-            return null;
+            throw new FileNotFoundException();
         }
 
-        return null;
+        return dictionary;
     }
 }
