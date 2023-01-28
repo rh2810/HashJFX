@@ -63,6 +63,10 @@ public class HashController {
 
         try {
             dictionary = HashModel.generateMD5Map(file);
+        } catch (FileNotFoundException e) {
+            dictionary = null;
+            //TODO: POP UP BOX
+            System.out.println("Please provide a valid test file");
         } catch (Exception e) {
             dictionary = null;
             //TODO: POP UP BOX
