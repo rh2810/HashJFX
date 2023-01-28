@@ -21,6 +21,7 @@ public class HashModel {
 
         decodedHash = dict.get(md5);
 
+
 //        if (OSChecker.isWindows()) {
 //            System.out.println("Is Windows!");
 ////            string = md5;
