@@ -40,6 +40,7 @@ public class HashController {
             switch (e.getClass().getCanonicalName()){
                 case "java.lang.NullPointerException":
                     System.out.println("The input field cannot be empty.");
+                    System.out.println("Test");
                     break;
                 case "java.io.FileNotFoundException":
                     System.out.println(e.getMessage());
