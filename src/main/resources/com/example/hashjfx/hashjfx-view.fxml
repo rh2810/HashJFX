@@ -13,6 +13,7 @@
 <?import javafx.scene.control.MenuItem?>
 <!--        alignment="CENTER" spacing="20.0"-->
 <?import java.net.URL?>
+<?import javafx.scene.control.DialogPane?>
 <VBox fx:id="root" alignment="TOP_CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.example.hashjfx.HashController">
 
@@ -26,10 +27,6 @@
         </Menu>
     </MenuBar>
 
-<!--    <padding>-->
-<!--        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>-->
-<!--    </padding>-->
-
     <Label fx:id="translatedHash"/>
 
     <HBox alignment="CENTER" xmlns:fx="http://javafx.com/fxml" >
@@ -37,7 +34,7 @@
     </HBox>
 
     <Button fx:id="submitButton" text="Submit" onAction="#onSubmitButtonClick"/>
-<!--    <Button text="Upload File" onAction="#onUploadFileClick"/>-->
+    <Label fx:id="fileName"/>
 
 </VBox>
 

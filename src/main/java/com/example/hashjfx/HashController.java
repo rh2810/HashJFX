@@ -1,19 +1,17 @@
 package com.example.hashjfx;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.HashMap;
+import java.util.NoSuchElementException;
 
 public class HashController {
     @FXML
@@ -21,23 +19,37 @@ public class HashController {
     @FXML
     private TextField inputHash;
     @FXML
+    private Label fileName;
+    @FXML
     private Parent root;
-    HashMap<String, String> dictionary;
+    private static File file = null;
+    private Alert alert;
+    private HashMap<String, String> dictionary;
 
     @FXML
     protected void onSubmitButtonClick() {
         try {
-            if(dictionary == null || dictionary.isEmpty()) {
-                throw new FileNotFoundException("You must upload a valid text file.");
+            if (dictionary == null || dictionary.isEmpty()) {
+                throw new FileNotFoundException("You must first upload a valid text file.");
             }
 
             translatedHash.setText(HashModel.convertToString(inputHash.getText(), dictionary));
-        } catch (NullPointerException e) {
-            //TODO: POP UP BOX
-            System.out.println(e.getMessage());
-        } catch (Exception e) {
-            //TODO: POP UP BOX
-            System.out.println("An unexpected error occurred: " + e.getClass().getCanonicalName());
+        } catch (NullPointerException e) { // Caught if the user does not provide any input.
+            alert = HashModel.generateAlert(e.getMessage());
+            alert.showAndWait();
+
+        } catch (FileNotFoundException e) { // Caught if user has not uploaded a text file.
+            alert = HashModel.generateAlert(e.getMessage());
+            alert.showAndWait();
+
+        } catch (NoSuchElementException e) { // Caught if given input does not exist in uploaded file.
+            alert = HashModel.generateAlert(e.getMessage());
+            alert.showAndWait();
+
+        } catch (Exception e) { // Caught if an unknown error occurs.
+            alert = HashModel.generateAlert("An unexpected error occurred: " + e.getClass().getCanonicalName());
+            alert.showAndWait();
+
         }
     }
 
@@ -46,21 +58,30 @@ public class HashController {
         Stage stage = (Stage) root.getScene().getWindow();
         FileChooser fileChooser = new FileChooser();
         FileChooser.ExtensionFilter fileExt = new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
-        File file;
+        File currentFile = file;
 
         fileChooser.getExtensionFilters().add(fileExt);
         file = fileChooser.showOpenDialog(stage);
 
+        if(file == null)
+            file = currentFile;
+
         try {
-            dictionary = HashModel.generateMD5Map(file);
+            if(file != null && !file.equals(currentFile)) {
+                dictionary = HashModel.generateMD5Map(file);
+                fileName.setFont(Font.font("Arial", FontWeight.BOLD, 12));
+                fileName.setText(file.getName());
+            }
         } catch (FileNotFoundException e) {
             dictionary = null;
-            //TODO: POP UP BOX
-            System.out.println("Please provide a valid test file");
+            alert = HashModel.generateAlert(e.getMessage());
+            alert.showAndWait();
+
         } catch (Exception e) {
             dictionary = null;
-            //TODO: POP UP BOX
-            System.out.println("An unexpected error occurred: " + e.getClass().getCanonicalName());
+            alert = HashModel.generateAlert("An unexpected error occurred: " + e.getClass().getCanonicalName());
+            alert.showAndWait();
+
         }
     }
 }
