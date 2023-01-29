@@ -21,18 +21,6 @@ public class HashModel {
 
         decodedHash = dict.get(md5);
 
-//        if (OSChecker.isWindows()) {
-//            System.out.println("Is Windows!");
-////            string = md5;
-//
-//        } else if (OSChecker.isLinux()) {
-//            System.out.println("Is Linux!");
-//            // well. do the same thing but with grep LOL
-//
-//        } else {
-//            throw new UnsupportedOperationException("This program is not compatible with the current operating system.");
-//        }
-
         return decodedHash;
     }
 

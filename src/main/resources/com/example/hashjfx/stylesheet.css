@@ -1,0 +1,14 @@
+#translatedHash.label {
+    -fx-border-color: black;
+    -fx-min-width: 225;
+    -fx-alignment: center;
+}
+
+#inputHash.text-field {
+    -fx-min-width: 225;
+    -fx-alignment: center;
+}
+
+#submitButton.button {
+    -fx-font-family: 'Courier New'
+}
