@@ -7,6 +7,10 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * Welcome to HashJFX! This class initializes the HashJFX program,
+ * which takes an MD5 hash and decodes it using a referenced dictionary file.
+ */
 public class HashInterface extends Application {
     @Override
     public void start(Stage stage) throws IOException {
