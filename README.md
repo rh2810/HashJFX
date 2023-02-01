@@ -18,7 +18,7 @@ java -jar .\HashJFX_Win.jar
 ### Linux
 Similarly for Linux, download the .zip file from the project's main repository and run the **HashJFX_Linux.jar** from the **JARs** folder.
 ```sh
-java -jar .\HashJFX_Linux.jar
+java -jar HashJFX_Linux.jar
 ```
 
 ## How to Use
