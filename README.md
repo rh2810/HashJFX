@@ -35,6 +35,6 @@ java -jar HashJFX_Linux.jar
 
 ![HashJFX_Application](https://user-images.githubusercontent.com/25485988/216125710-5cbff461-7a07-4985-846a-fc6b317ce479.PNG)
 
-Upload a file by selecting **File > Upload text file...** from the top left corner. Once a file has been uploaded,
+Upload a file by selecting *File > Upload text file...* from the top left corner. Once a file has been uploaded,
 enter an MD5 hash into the input field and then click the submit button. If your hash is a valid entry, the output field
 should display the given string!
