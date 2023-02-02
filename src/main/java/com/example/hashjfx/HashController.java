@@ -29,7 +29,7 @@ public class HashController {
 
     private static File file = null; // For keeping track of the current file
     private Alert alert; // Used for displaying alerts/errors to the user
-    private HashMap<String, String> dictionary; // The
+    private HashMap<String, String> dictionary; // Datastructure for mapping MD5s and string refs
 
     /**
      * ActionListener for the submit button. This method initiates the md5
