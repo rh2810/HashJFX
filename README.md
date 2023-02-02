@@ -4,7 +4,7 @@ through the utilization of dictionary files.
 
 ## How to Run
 **If running a JAR, please ensure that you are using Java version 19 or greater.
-Files can be found in the JARs folder under the main repository.**
+Files can be found in the *JARs* folder under the main repository.**
 
 ![HashJFX_JARs](https://user-images.githubusercontent.com/25485988/216125684-ac285a2a-54d2-4ef5-8e9e-87e36253a096.PNG)
 
