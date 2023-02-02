@@ -3,7 +3,7 @@ Welcome to HashJFX, a JavaFX application which translates MD5 hash into its resp
 through the utilization of dictionary files.
 
 ## How to Run
-**ATTENTION: If running a JAR, please ensure that you are using Java version 19 or greater.
+** *ATTENTION*: If running a JAR, please ensure that you are using Java version 19 or greater.
 Files can be found in the *JARs* folder under the main repository. Otherwise, for earlier versions of Java and JavaFX, 
 you will need to recompile the contents of *src/main* using an earlier JVM.**
 
