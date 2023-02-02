@@ -7,7 +7,7 @@ through the utilization of dictionary files.
 Files can be found in the *JARs* folder under the main repository. Otherwise, for earlier versions of Java and JavaFX, 
 you will need to recompile the contents of *src/main* using an earlier JVM.**
 
-**More resources on compiling and running raw project in IDE:**
+**More resources on compiling and running the raw project in IDE:**
   1. [Only Cloning Subdirectories with Git](https://stackoverflow.com/questions/600079/how-do-i-clone-a-subdirectory-only-of-a-git-repository)
   2. [Create a new JavaFX project](https://www.jetbrains.com/help/idea/cloning-repository.html#clone_project_from_welcome_screen)
     <br />a.[Cloning Repositories in IntelliJ](https://www.jetbrains.com/help/idea/cloning-repository.html#clone_project_from_welcome_screen)
